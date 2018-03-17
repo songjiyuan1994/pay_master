@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pay.main.payment.dao.TransChannelMapper">
+	<resultMap id="BaseResultMap" type="com.pay.main.payment.entity.PayChannel">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="mer_id" property="merId" jdbcType="VARCHAR" />
+		<result column="mer_describe" property="merDescribe" jdbcType="VARCHAR" />
+		<result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+		<result column="merchant_no" property="merchantNo" jdbcType="VARCHAR" />
+		<result column="channel_no" property="channelNo" jdbcType="VARCHAR" />
+		<result column="wechat_no" property="wechatNo" jdbcType="VARCHAR" />
+		<result column="p_channel" property="pChannel" jdbcType="VARCHAR" />
+		<result column="p_fee" property="pFee" jdbcType="REAL" />
+		<result column="p_title" property="pTitle" jdbcType="VARCHAR" />
+		<result column="p_attach" property="pAttach" jdbcType="VARCHAR" />
+		<result column="p_type" property="pType" jdbcType="TINYINT" />
+		<result column="p_time" property="pTime" jdbcType="TIMESTAMP" />
+		<result column="p_state" property="pState" jdbcType="TINYINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+		<result column="app_id" property="appId" jdbcType="VARCHAR" />
+		<result column="notify_url" property="notifyUrl" jdbcType="VARCHAR" />
+		<result column="ext3" property="ext3" jdbcType="VARCHAR" />
+		<result column="ext4" property="ext4" jdbcType="VARCHAR" />
+		<result column="ext5" property="ext5" jdbcType="VARCHAR" />
+		<result column="notify_state" property="notifyState" jdbcType="TINYINT"/>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, mer_id, mer_describe, trade_no, merchant_no,
+		channel_no, wechat_no, p_channel, p_fee, p_title,
+		p_attach, p_type,
+		p_time, p_state, create_time, modified_time, app_id, notify_url,notify_state
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pay_channel
+		where trade_no = #{tradeNo,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByPrimaryKeyMer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pay_channel
+		where mer_id=#{0} and merchant_no=#{1}
+	</select>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.pay.main.payment.entity.PayChannel">
+		update pay_channel
+		<set>
+			<if test="merId != null">
+				mer_id = #{merId,jdbcType=VARCHAR},
+			</if>
+			<if test="mer_describe != null">
+				mer_describe = #{mer_describe,jdbcType=VARCHAR},
+			</if>
+			<if test="merchantNo != null">
+				merchant_no = #{merchantNo,jdbcType=VARCHAR},
+			</if>
+			<if test="channelNo != null">
+				channel_no = #{channelNo,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatNo != null">
+				wechat_no = #{wechatNo,jdbcType=VARCHAR},
+			</if>
+			<if test="pChannel != null">
+				p_channel = #{pChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="pFee != null">
+				p_fee = #{pFee,jdbcType=REAL},
+			</if>
+			<if test="pTitle != null">
+				p_title = #{pTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="pAttach != null">
+				p_attach = #{pAttach,jdbcType=VARCHAR},
+			</if>
+			<if test="pType != null">
+				p_type = #{pType,jdbcType=TINYINT},
+			</if>
+			<if test="pTime != null">
+				p_time = #{pTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="pState != null">
+				p_state = #{pState,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="appId != null">
+				app_id = #{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="notifyUrl != null">
+				notify_url = #{notifyUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="notifyState != null">
+				notify_state = #{notifyState},
+			</if>
+			<if test="ext4 != null">
+				ext4 = #{ext4,jdbcType=VARCHAR},
+			</if>
+			<if test="ext5 != null">
+				ext5 = #{ext5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where trade_no = #{tradeNo,jdbcType=VARCHAR}
+	</update>
+
+	<insert id="insertSelective" parameterType="com.pay.main.payment.entity.PayChannel">
+		insert into pay_channel
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="merId != null">
+				mer_id,
+			</if>
+			<if test="merDescribe != null">
+				mer_describe,
+			</if>
+			<if test="tradeNo != null">
+				trade_no,
+			</if>
+			<if test="merchantNo != null">
+				merchant_no,
+			</if>
+			<if test="channelNo != null">
+				channel_no,
+			</if>
+			<if test="wechatNo != null">
+				wechat_no,
+			</if>
+			<if test="pChannel != null">
+				p_channel,
+			</if>
+			<if test="pFee != null">
+				p_fee,
+			</if>
+			<if test="pTitle != null">
+				p_title,
+			</if>
+			<if test="pAttach != null">
+				p_attach,
+			</if>
+			<if test="pType != null">
+				p_type,
+			</if>
+			<if test="pTime != null">
+				p_time,
+			</if>
+			<if test="pState != null">
+				p_state,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="modifiedTime != null">
+				modified_time,
+			</if>
+			<if test="appId != null">
+				app_id,
+			</if>
+			<if test="notifyUrl != null">
+				notify_url,
+			</if>
+			<if test="notifyState != null">
+				notify_state,
+			</if>
+			<if test="ext4 != null">
+				ext4,
+			</if>
+			<if test="ext5 != null">
+				ext5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="merId != null">
+				#{merId,jdbcType=VARCHAR},
+			</if>
+			<if test="merDescribe != null">
+				#{merDescribe,jdbcType=VARCHAR},
+			</if>
+			<if test="tradeNo != null">
+				#{tradeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="merchantNo != null">
+				#{merchantNo,jdbcType=VARCHAR},
+			</if>
+			<if test="channelNo != null">
+				#{channelNo,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatNo != null">
+				#{wechatNo,jdbcType=VARCHAR},
+			</if>
+			<if test="pChannel != null">
+				#{pChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="pFee != null">
+				#{pFee,jdbcType=REAL},
+			</if>
+			<if test="pTitle != null">
+				#{pTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="pAttach != null">
+				#{pAttach,jdbcType=VARCHAR},
+			</if>
+			<if test="pType != null">
+				#{pType,jdbcType=TINYINT},
+			</if>
+			<if test="pTime != null">
+				#{pTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="pState != null">
+				#{pState,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				#{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="notifyUrl != null">
+				#{notifyUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="notifyState != null">
+				#{notifyState},
+			</if>
+			<if test="ext4 != null">
+				#{ext4,jdbcType=VARCHAR},
+			</if>
+			<if test="ext5 != null">
+				#{ext5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+</mapper>

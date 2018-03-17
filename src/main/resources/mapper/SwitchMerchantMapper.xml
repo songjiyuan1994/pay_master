@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pay.main.payment.dao.SwitchMerchantMapper">
+	<resultMap id="BaseResultMap" type="com.pay.main.payment.entity.SwitchMerchant">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="appid" property="appid" jdbcType="VARCHAR" />
+		<result column="mchid" property="mchid" jdbcType="VARCHAR" />
+		<result column="sign" property="sign" jdbcType="VARCHAR" />
+		<result column="ope_appid" property="opeAppid" jdbcType="VARCHAR" />
+		<result column="pub_appid" property="pubAppid" jdbcType="VARCHAR" />
+		<result column="pub_secret" property="pubSecret" jdbcType="VARCHAR" />
+		<result column="pub_url" property="pubUrl" jdbcType="VARCHAR" />
+		<result column="total" property="total" jdbcType="FLOAT" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="last_pay_time" property="lastPayTime" jdbcType="TIMESTAMP" />
+		<result column="large_pay_time" property="largePayTime" jdbcType="TIMESTAMP" />
+		
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, appid, mchid, sign, ope_appid, pub_appid, pub_secret,pub_url,total,state
+	</sql>
+	
+	<select id="selectAllInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from switch_merchant
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from switch_merchant
+		where mchid = #{appid}
+	</select>
+	
+	<select id="selectAutoList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from switch_merchant
+		where appid = #{appid} and state=1
+	</select>
+
+	<update id="updataTotal">
+		UPDATE switch_merchant
+		SET total = total+#{total},
+		<if test="largePayTime != null">
+			large_pay_time=#{largePayTime},
+		</if>
+		last_pay_time=#{lastPayTime}
+		WHERE appid=#{appid} AND mchid=#{mchid}
+	</update>
+	
+	<select id="selectAutoInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from switch_merchant
+		where appid = #{appid} and mchid=#{mchid}
+	</select>
+</mapper>

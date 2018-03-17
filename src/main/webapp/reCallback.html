@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<div ng-controller="reCallbackController">
+    <div class="row" ng-init="init()">
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="active">商户信息</li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="board">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        商户基本信息
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <form class="inline">
+                                <div class="form-group">
+                                    <label for="merId" style="margin: 10px">商户名称</label>
+                                    <input id="merId" ng-model="data.name" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2" class="form-control"
+                                           readonly/>
+                                    <label for="merKey" style="margin: 10px">商户编号</label>
+                                    <input id="merKey" ng-model="data.ulMerId" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2"
+                                           class="form-control"
+                                           readonly/>
+                                    <label for="3" style="margin: 10px">商户密钥</label>
+                                    <input id="3" ng-model="data.ulSign" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2"
+                                           class="form-control"
+                                           readonly/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <form class="inline">
+                                <div class="form-group">
+                                    <label for="2" style="margin: 10px">联系电话</label>
+                                    <input id="2" ng-model="data.phone" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2" class="form-control"
+                                           readonly/>
+                                    <label for="1" style="margin: 10px">产品类型</label>
+                                    <input id="1" ng-model="data.pdType" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2"
+                                           class="form-control"
+                                           readonly/>
+                                    <label for="4" style="margin: 10px">商户状态</label>
+                                    <input id="4" value="通过"  style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #01814a"
+                                           class="form-control"
+                                           readonly/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="board">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        账户信息
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary" style="padding: 8px">
+                                <form class="inline">
+                                    <div class="form-group">
+                                        <label for="11" style="margin: 10px">收款账户</label>
+                                        <input id="11" ng-model="data.zhanghu" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2" class="form-control"
+                                               readonly/>
+                                        <label for="22" style="margin: 10px">开户支行</label>
+                                        <input id="22" ng-model="data.kaihuhang" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2"
+                                               class="form-control"
+                                               readonly/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary" style="padding: 8px">
+                                <form class="inline">
+                                    <div class="form-group">
+                                        <label for="44" style="margin: 10px">银行类型</label>
+                                        <input id="44" ng-model="data.banktype" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2" class="form-control"
+                                               readonly/>
+                                        <label for="55" style="margin: 10px">收款名称</label>
+                                        <input id="55" ng-model="data.shoukuanren" style="width:400px;
+                                    margin-right: 10px;margin-left: 10px;color: #0e90d2"
+                                               class="form-control"
+                                               readonly/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

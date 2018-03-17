@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pay.main.payment.dao.PaySummaryMapper">
+    <resultMap id="BaseResultMap" type="com.pay.main.payment.entity.PaySummaryEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="merId" property="merId" jdbcType="VARCHAR"/>
+        <result column="successCount" property="successCount" jdbcType="INTEGER"/>
+        <result column="totalMoney" property="totalMoney" jdbcType="REAL"/>
+        <result column="settlement" property="settlement" jdbcType="REAL"/>
+        <result column="payType" property="payType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getSummaryTotal" resultMap="BaseResultMap">
+		SELECT pay_channel.mer_id merId,
+        dict.dict_value payType,
+        DATE_FORMAT(p_time,'%Y-%m-%d') date,
+        COUNT(CASE WHEN p_state=1 THEN 0 ELSE NULL END) AS successCount,
+        ROUND(SUM(CASE WHEN p_state=1 THEN p_fee ELSE 0 END),2) AS totalMoney,
+        ROUND(SUM(p_fee)*user_rate.ur_rate,2) AS settlement
+        FROM pay_channel,user_rate,dict
+        WHERE pay_channel.mer_id = user_rate.ul_merId
+        AND pay_channel.p_type = user_rate.ur_type
+        AND  pay_channel.p_type = dict.dict_key
+        AND pay_channel.mer_id = #{merId}
+        AND p_time BETWEEN #{startTime} AND #{endTime}
+        AND pay_channel.p_state = 1
+        GROUP BY pay_channel.mer_id,pay_channel.p_type,date
+	</select>
+
+</mapper>

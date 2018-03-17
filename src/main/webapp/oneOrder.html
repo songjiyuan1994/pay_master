@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<div ng-controller="oneOrderController">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="active">订单汇总</li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-xs-12 col-md-6 col-lg-12">
+            <div class="panel panel-primary">
+                <form class="form-inline" style="padding: 10px">
+                    <div class="form-group">
+                        <span>商户订单号：</span>
+                        <input type="text" id="merNo" placeholder="请输入商户订单号！" class="form-control">
+                        <span>&nbsp;&nbsp;平台订单号：</span>
+                        <input type="text" id="platformNo" placeholder="请输入平台订单号！" class="form-control">
+                        <span>&nbsp;&nbsp;交易订单号：</span>
+                        <input type="text" id="payNo" placeholder="请输入商户订单号！" class="form-control">
+                    </div>
+                    <input type="button" class="btn btn-info" ng-click="select()" value="查询">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table id="table"></table>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+</div>

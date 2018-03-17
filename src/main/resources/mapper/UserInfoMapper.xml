@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pay.main.payment.dao.UserInfoMapper">
+	<resultMap id="BaseResultMap" type="com.pay.main.payment.entity.UserInfo">
+		<id column="u_id" property="uId" jdbcType="INTEGER" />
+		<result column="u_appid" property="uAppid" jdbcType="VARCHAR" />
+		<result column="u_imsi" property="uImsi" jdbcType="VARCHAR" />
+		<result column="u_imei" property="uImei" jdbcType="VARCHAR" />
+		<result column="u_model" property="uModel" jdbcType="VARCHAR" />
+		<result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
+		<result column="u_area" property="uArea" jdbcType="VARCHAR" />
+		<result column="u_mac" property="uMac" jdbcType="VARCHAR" />
+		<result column="u_ip" property="uIp" jdbcType="VARCHAR" />
+		<result column="u_state" property="uState" jdbcType="TINYINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+		<result column="u_merId" property="uMerid" jdbcType="VARCHAR" />
+		<result column="ext2" property="ext2" jdbcType="VARCHAR" />
+		<result column="ext3" property="ext3" jdbcType="VARCHAR" />
+		<result column="ext4" property="ext4" jdbcType="VARCHAR" />
+		<result column="ext5" property="ext5" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		u_id, u_appid, u_imsi, u_imei, u_model, u_phone, u_area, u_mac, u_ip,
+		u_state, create_time,
+		modified_time, u_merId, ext2, ext3, ext4, ext5
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_info
+		where u_id = #{uId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_info
+		where u_id = #{uId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.pay.main.payment.entity.UserInfo">
+		insert into user_info (u_id, u_appid, u_imsi,
+		u_imei, u_model, u_phone,
+		u_area, u_mac, u_ip, u_state,
+		create_time, modified_time, u_merId,
+		ext2, ext3, ext4, ext5
+		)
+		values (#{uId,jdbcType=INTEGER}, #{uAppid,jdbcType=VARCHAR},
+		#{uImsi,jdbcType=VARCHAR},
+		#{uImei,jdbcType=VARCHAR}, #{uModel,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR},
+		#{uArea,jdbcType=VARCHAR}, #{uMac,jdbcType=VARCHAR},
+		#{uIp,jdbcType=VARCHAR}, #{uState,jdbcType=TINYINT},
+		#{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP},
+		#{uMerid,jdbcType=VARCHAR},
+		#{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR},
+		#{ext5,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.pay.main.payment.entity.UserInfo">
+		insert into user_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uId != null">
+				u_id,
+			</if>
+			<if test="uAppid != null">
+				u_appid,
+			</if>
+			<if test="uImsi != null">
+				u_imsi,
+			</if>
+			<if test="uImei != null">
+				u_imei,
+			</if>
+			<if test="uModel != null">
+				u_model,
+			</if>
+			<if test="uPhone != null">
+				u_phone,
+			</if>
+			<if test="uArea != null">
+				u_area,
+			</if>
+			<if test="uMac != null">
+				u_mac,
+			</if>
+			<if test="uIp != null">
+				u_ip,
+			</if>
+			<if test="uState != null">
+				u_state,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="modifiedTime != null">
+				modified_time,
+			</if>
+			<if test="uMerid != null">
+				u_merId,
+			</if>
+			<if test="ext2 != null">
+				ext2,
+			</if>
+			<if test="ext3 != null">
+				ext3,
+			</if>
+			<if test="ext4 != null">
+				ext4,
+			</if>
+			<if test="ext5 != null">
+				ext5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uId != null">
+				#{uId,jdbcType=INTEGER},
+			</if>
+			<if test="uAppid != null">
+				#{uAppid,jdbcType=VARCHAR},
+			</if>
+			<if test="uImsi != null">
+				#{uImsi,jdbcType=VARCHAR},
+			</if>
+			<if test="uImei != null">
+				#{uImei,jdbcType=VARCHAR},
+			</if>
+			<if test="uModel != null">
+				#{uModel,jdbcType=VARCHAR},
+			</if>
+			<if test="uPhone != null">
+				#{uPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="uArea != null">
+				#{uArea,jdbcType=VARCHAR},
+			</if>
+			<if test="uMac != null">
+				#{uMac,jdbcType=VARCHAR},
+			</if>
+			<if test="uIp != null">
+				#{uIp,jdbcType=VARCHAR},
+			</if>
+			<if test="uState != null">
+				#{uState,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				#{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uMerid != null">
+				#{uMerid,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				#{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="ext3 != null">
+				#{ext3,jdbcType=VARCHAR},
+			</if>
+			<if test="ext4 != null">
+				#{ext4,jdbcType=VARCHAR},
+			</if>
+			<if test="ext5 != null">
+				#{ext5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.pay.main.payment.entity.UserInfo">
+		update user_info
+		<set>
+			<if test="uAppid != null">
+				u_appid = #{uAppid,jdbcType=VARCHAR},
+			</if>
+			<if test="uImsi != null">
+				u_imsi = #{uImsi,jdbcType=VARCHAR},
+			</if>
+			<if test="uImei != null">
+				u_imei = #{uImei,jdbcType=VARCHAR},
+			</if>
+			<if test="uModel != null">
+				u_model = #{uModel,jdbcType=VARCHAR},
+			</if>
+			<if test="uPhone != null">
+				u_phone = #{uPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="uArea != null">
+				u_area = #{uArea,jdbcType=VARCHAR},
+			</if>
+			<if test="uMac != null">
+				u_mac = #{uMac,jdbcType=VARCHAR},
+			</if>
+			<if test="uIp != null">
+				u_ip = #{uIp,jdbcType=VARCHAR},
+			</if>
+			<if test="uState != null">
+				u_state = #{uState,jdbcType=TINYINT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifiedTime != null">
+				modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uMerid != null">
+				u_merId = #{uMerid,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				ext2 = #{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="ext3 != null">
+				ext3 = #{ext3,jdbcType=VARCHAR},
+			</if>
+			<if test="ext4 != null">
+				ext4 = #{ext4,jdbcType=VARCHAR},
+			</if>
+			<if test="ext5 != null">
+				ext5 = #{ext5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where u_id = #{uId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.pay.main.payment.entity.UserInfo">
+		update user_info
+		set u_appid = #{uAppid,jdbcType=VARCHAR},
+		u_imsi = #{uImsi,jdbcType=VARCHAR},
+		u_imei = #{uImei,jdbcType=VARCHAR},
+		u_model = #{uModel,jdbcType=VARCHAR},
+		u_phone = #{uPhone,jdbcType=VARCHAR},
+		u_area = #{uArea,jdbcType=VARCHAR},
+		u_mac = #{uMac,jdbcType=VARCHAR},
+		u_ip = #{uIp,jdbcType=VARCHAR},
+		u_state = #{uState,jdbcType=TINYINT},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+		u_merId = #{uMerid,jdbcType=VARCHAR},
+		ext2 = #{ext2,jdbcType=VARCHAR},
+		ext3 = #{ext3,jdbcType=VARCHAR},
+		ext4 = #{ext4,jdbcType=VARCHAR},
+		ext5 = #{ext5,jdbcType=VARCHAR}
+		where u_id = #{uId,jdbcType=INTEGER}
+	</update>
+</mapper>

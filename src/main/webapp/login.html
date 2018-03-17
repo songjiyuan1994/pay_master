@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="login" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>麦尔支付</title>
+    <link href="resources/loginRes/style_log.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="resources/loginRes/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/loginRes/userpanel.css">
+    <link rel="stylesheet" type="text/css" href="resources/loginRes/jquery.ui.all.css">
+    <script src="resources/jquery-1.8.2.min.js"></script>
+    <script src="resources/angular.min.js"></script>
+</head>
+
+<body class="login" ng-controller="loginController">
+<div class="login_m">
+    <div class="login_logo" style="font-size: x-large">商户登录平台</div>
+    <div class="login_boder">
+        <div class="login_padding" id="login_model">
+            <label for="username">用户名</label>
+            <input type="text" id="username" ng-model = "username" class="txt_input txt_input2">
+            <label for="userpwd">密码</label>
+            <input type="password" name="textfield2" ng-model = "password" id="userpwd" class="txt_input">
+            <span for="sign">验证码</span><br/>
+            <input type="text" name="textfield3" ng-model="captcha" id="verification" class="txt_input"
+                   style="float:left;width: 50%;display: inline">
+            <input type="image" id="CaptchaImg" src="login/onCaptcha"
+                   ng-click="refresh()" alt="刷新验证码" style="float:left;margin-left: 20px; width: 35%"/>
+            <div class="rem_sub" style="margin-top: 20px">
+                <label>
+                    <input type="button" style="margin-top: 10px" class="sub_button" name="button" id="button"
+                           value="SIGN-IN" ng-click = "login()"
+                           style="opacity: 0.7;">
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("login", []);
+    app.controller("loginController", function ($http, $scope) {
+        $scope.login = function () {
+            $http({
+                url: "../login/onLogin",
+                contentType: "application/x-www-form-urlencoded",
+                method: 'POST',
+                params: {
+                    username: $scope.username,
+                    password: $scope.password,
+                    captcha: $scope.captcha
+                }
+            }).success(function (data) {
+                if (data.state == '200') {
+                    console.info(data.state);
+                    window.location.href = "home.html";
+                } else {
+                    $scope.refresh();
+                    alert(data.data);
+                }
+            }).error(function (data) {
+            });
+        };
+        $scope.refresh = function () {
+            var vcode = document.getElementById('CaptchaImg');
+            vcode.src = 'login/onCaptcha?t=' + new Date().getTime();
+        }
+    });
+    /*回车登录*/
+    $(function () {
+        $("#captcha").keydown(function (e) {
+            var curKey = e.which;
+            if (curKey == 13) {
+                subFrom();
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pay.main.payment.dao.UserLoginMapper">
+	<resultMap id="BaseResultMap" type="com.pay.main.payment.entity.UserLogin">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="ul_username" property="ulUsername" jdbcType="VARCHAR" />
+		<result column="ul_password" property="ulPassword" jdbcType="VARCHAR" />
+		<result column="ul_merId" property="ulMerId" jdbcType="VARCHAR" />
+		<result column="ul_sign" property="ulSign" jdbcType="VARCHAR" />
+		<result column="ul_group" property="ulGroup" jdbcType="TINYINT" />
+		<result column="ul_paystate" property="ulPaystate" jdbcType="TINYINT" />
+		<result column="ul_notify" property="ulNotify" jdbcType="TINYINT" />
+		<result column="ul_remarks" property="name" jdbcType="VARCHAR" />
+		<result column="ul_phone" property="phone" jdbcType="VARCHAR" />
+		<result column="pd_type" property="pdType" jdbcType="VARCHAR" />
+		<result column="shoukuanren" property="shoukuanren" jdbcType="VARCHAR" />
+		<result column="kaihuhang" property="kaihuhang" jdbcType="VARCHAR" />
+		<result column="banktype" property="banktype" jdbcType="VARCHAR" />
+		<result column="zhanghu" property="zhanghu" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, ul_username, ul_merId,ul_sign, ul_group, ul_paystate, ul_notify,ul_remarks,
+		ul_phone,pd_type,shoukuanren,kaihuhang,banktype,zhanghu
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_login
+		where ul_merId = #{merId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByUserPwd" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_login
+		where ul_username = #{username,jdbcType=VARCHAR}
+		AND ul_password = #{password,jdbcType=VARCHAR}
+	</select>
+	<update id="updatePwd" parameterType="java.lang.Integer">
+		update user_login
+		<set>
+			<if test="newPassWord != null">
+				ul_password = #{newPassWord,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ul_username = #{userName,jdbcType=VARCHAR}
+		AND ul_password = #{oldPassWord,jdbcType=VARCHAR}
+	</update>
+</mapper>

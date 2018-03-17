@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pay.main.payment.dao.DictMapper">
+	<resultMap id="BaseResultMap" type="com.pay.main.payment.entity.Dict">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="dict_type" property="dictType" jdbcType="VARCHAR" />
+		<result column="dict_key" property="dictKey" jdbcType="VARCHAR" />
+		<result column="dict_value" property="dictValue" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select dict_type, dict_key, dict_value
+		from dict
+		where dict_type = #{type} and dict_key=#{key}
+	</select>
+</mapper>

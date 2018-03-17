@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 数据库驱动包位置 -->
+	<classPathEntry location="F:\localRepository\mysql\mysql-connector-java\5.1.18\mysql-connector-java-5.1.18.jar" />
+	
+	<context id="context">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://139.129.241.116:3306/pay?useUnicode=true&amp;characterEncoding=GBK"
+			userId="root" password="9q@sql123!" />
+
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.pay.main.entity"
+			targetProject="project-pay-main/src/main/java" />
+
+		<!-- 生成的映射文件报名和位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="project-pay-main/src/main/resources" />
+
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.pay.main.dao" targetProject="project-pay-main/src/main/java" />
+
+		<!-- 要生成的那些表(更改tableName 和 domainObjectName 就可以了) -->
+		<table tableName="switch_merchant" domainObjectName="SwitchMerchant"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+	</context>
+</generatorConfiguration>
