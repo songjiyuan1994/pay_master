@@ -351,7 +351,7 @@ app.controller('appController', function ($scope, $http) {
         if (200 == ret.state) {
             $scope.username = ret.data;
         } else {
-            window.location.href = "login.html";
+            window.location.href = "../login2.html";
         }
     }).error(function (data) {
     });
@@ -364,7 +364,7 @@ app.controller('appController', function ($scope, $http) {
             if (200 == ret.state) {
                 $scope.username = ret.data;
             } else {
-                window.location.href = "login.html";
+                window.location.href = "../login2.html";
             }
         }).error(function (data) {
         });
@@ -390,7 +390,7 @@ app.controller('changePassWordController', function ($scope, $http) {
         }).success(function (ret) {
             alert(ret.msg);
             if (200 == ret.state) {
-                window.location.href = "login.html";
+                window.location.href = "../login2.html";
             }
         }).error(function (data) {
         });

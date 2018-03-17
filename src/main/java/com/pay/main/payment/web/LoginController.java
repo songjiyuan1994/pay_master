@@ -61,7 +61,7 @@ public class LoginController extends MybatisPaging{
 				response.setCharacterEncoding("UTF-8");
 				PrintWriter out = response.getWriter();
 				String contextPath = request.getContextPath();// 获取上下文路径-/servlet
-				String loginPage = "/login.html";
+				String loginPage = "/login2.html";
 				StringBuilder builder = new StringBuilder();
 				builder.append("<script type=\"text/javascript\">");
 				builder.append("window.top.location.href='");
